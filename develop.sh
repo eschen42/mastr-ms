@@ -126,24 +126,29 @@ jslint() {
 
 
 start() {
-    mkdir -p data/dev
+    mkdir -p    data/dev
     chmod o+rwx data/dev
+    mkdir -p    data/dev/log
+    chmod o+rwx data/dev/log
 
     make_virtualenv
 
-    docker-compose --project-name mastr-ms -f docker-compose.yml up
+    sudo docker-compose --project-name mastr-ms -f docker-compose.yml up
 }
 
 runtests() {
-    mkdir -p data/tests
-    chmod o+rwx data/tests
+    mkdir -p    data/test
+    sudo chmod o+rwx data/test
+    mkdir -p    data/test/log
+    sudo chmod o+rwx data/test/log
 
     make_virtualenv
 
+
     # clean up containers from past runs
-    ( docker-compose --project-name ${PROJECT_NAME} -f docker-compose-test.yml rm --force || exit 0 )
-    docker-compose --project-name ${PROJECT_NAME} -f docker-compose-test.yml build # --no-cache
-    docker-compose --project-name ${PROJECT_NAME} -f docker-compose-test.yml up
+    ( sudo docker-compose --project-name ${PROJECT_NAME} -f docker-compose-test.yml rm --force || exit 0 )
+    sudo docker-compose --project-name ${PROJECT_NAME} -f docker-compose-test.yml build # --no-cache
+    sudo docker-compose --project-name ${PROJECT_NAME} -f docker-compose-test.yml up
 }
 
 

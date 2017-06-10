@@ -1,5 +1,6 @@
 #
-FROM muccg/python-base:ubuntu14.04-2.7
+FROM muccg/python-base:ubuntu17.04-2.7
+
 MAINTAINER https://github.com/muccg/mastr-ms
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -14,8 +15,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libxslt1-dev \
   libssl-dev \
   libsasl2-dev \
-  postgresql-client-9.3 \
-  python-wxgtk2.8 \
+  postgresql-client \
+  python-wxgtk3.0 \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN env --unset=DEBIAN_FRONTEND
